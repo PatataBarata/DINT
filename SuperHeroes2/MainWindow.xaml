@@ -1,0 +1,84 @@
+﻿<Window x:Class="SuperHeroes2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SuperHeroes2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Ver superhéroes">
+                <DockPanel  Background="Green" x:Name="DockPanelPrincipal">
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
+                    <TextBlock Text="Nombre Superheroes" DockPanel.Dock="Left" Padding="20"></TextBlock>
+                        
+                        <Image x:Name="ImagenXmen" Source="xmen.png" Width="70" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                        <Image x:Name="ImagenAvenger" Source="avengers.png" Width="50" HorizontalAlignment="Right" DockPanel.Dock="Right"></Image>
+                        
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+                    <Image x:Name="ImagenFlechaIzq" Source="arrow.png" Width="20"></Image>
+                    <TextBlock x:Name="textNumeroPagina" Text="4/4"></TextBlock>
+                    <Image x:Name="ImagenFlechaDer" Source="arrow.png" Width="20"></Image>
+                    </StackPanel>
+                    <Image x:Name="ImagenRuta"></Image>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Nuevo superhéroe">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="Nombre del superhéroe" ></TextBlock>
+                        <Image Source="info.png" Height="18" x:Name="infoSuperHeroe"></Image>
+                        </StackPanel>
+                        <TextBox x:Name="texBlocNombreSuperheroe"></TextBox>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Imagen" ></TextBlock>
+                        <Image Source="info.png" Height="18" x:Name="infoImagen"></Image>
+                        </StackPanel>
+                        <TextBox x:Name="texBlockDireccionImagen" ></TextBox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <StackPanel  >
+                                    
+                                    <RadioButton x:Name="radioButtonHeroe">Héroe</RadioButton>
+                                    <RadioButton x:Name="radioButtonVillano">Villano</RadioButton>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" >
+                                <StackPanel >
+
+                                    <CheckBox x:Name="checkVengador">Vengadores</CheckBox>
+                                    <CheckBox x:Name="checkXmen">X-men</CheckBox>
+                                </StackPanel>
+                            </Border>
+
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="ButtonAceptar">Aceptar</Button>
+                            <Button x:Name="ButtonLimpiar" >Limpiar</Button>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <Border Background="LightPink" Grid.Column="1" Margin="10">
+                        <Image x:Name="ImagenElegir" ></Image>
+                    </Border>
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Window>
