@@ -6,24 +6,29 @@
         xmlns:local="clr-namespace:SuperHeroes2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <local:Superheroe x:Key="ClasSuperheroes"></local:Superheroe>
+    </Window.Resources>
+    <Grid x:Name="principal" DataContext="{StaticResource ClasSuperheroes}">
         <TabControl>
             <TabItem Header="Ver superhéroes">
                 <DockPanel  Background="Green" x:Name="DockPanelPrincipal">
                     <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="10">
-                    <TextBlock Text="Nombre Superheroes" DockPanel.Dock="Left" Padding="20"></TextBlock>
+                    <TextBlock Text="{Binding Path=Nombre }" DockPanel.Dock="Left" Padding="20"></TextBlock>
                         
-                        <Image x:Name="ImagenXmen" Source="xmen.png" Width="70" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-                        <Image x:Name="ImagenAvenger" Source="avengers.png" Width="50" HorizontalAlignment="Right" DockPanel.Dock="Right"></Image>
+                        <Image x:Name="ImagenXmen" Visibility="Collapsed" Source="xmen.png" Width="70" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                        <Image Visibility="Collapsed" x:Name="ImagenAvenger" Source="avengers.png" Width="50" HorizontalAlignment="Right" DockPanel.Dock="Right"></Image>
                         
                     </DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
-                    <Image x:Name="ImagenFlechaIzq" Source="arrow.png" Width="20"></Image>
-                    <TextBlock x:Name="textNumeroPagina" Text="4/4"></TextBlock>
-                    <Image x:Name="ImagenFlechaDer" Source="arrow.png" Width="20"></Image>
+                    <Image x:Name="ImagenFlechaIzq" Source="arrow.png" Width="20" MouseDown="ImagenFlechaIzq_MouseDown"></Image>
+                    <TextBlock x:Name="textNumeroPagina" Text="1/3"></TextBlock>
+                        <Image FlowDirection="RightToLeft"  x:Name="ImagenFlechaDer" Source="arrow.png" Width="20" MouseDown="ImagenFlechaIzq_MouseDown"></Image>
                     </StackPanel>
-                    <Image x:Name="ImagenRuta"></Image>
+                    <Image x:Name="ImagenRuta" Source="{Binding Path=Imagen}"></Image>
                 </DockPanel>
+                                                     
+
             </TabItem>
             <TabItem Header="Nuevo superhéroe">
                 <Grid >
@@ -32,18 +37,18 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" x:Name="stackPanelsSegundo">
 
                             <TextBlock Text="Nombre del superhéroe" ></TextBlock>
                         <Image Source="info.png" Height="18" x:Name="infoSuperHeroe"></Image>
                         </StackPanel>
-                        <TextBox x:Name="texBlocNombreSuperheroe"></TextBox>
+                        <TextBox x:Name="texBlocNombreSuperheroe" Text="{Binding Path=Nombre}"></TextBox>
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Imagen" ></TextBlock>
                         <Image Source="info.png" Height="18" x:Name="infoImagen"></Image>
                         </StackPanel>
-                        <TextBox x:Name="texBlockDireccionImagen" ></TextBox>
+                        <TextBox x:Name="texBlockDireccionImagen" Text="{Binding Path=Imagen}" ></TextBox>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -52,27 +57,27 @@
                             <Border Grid.Column="0">
                                 <StackPanel  >
                                     
-                                    <RadioButton x:Name="radioButtonHeroe">Héroe</RadioButton>
-                                    <RadioButton x:Name="radioButtonVillano">Villano</RadioButton>
+                                    <RadioButton x:Name="radioButtonHeroe" IsChecked="{Binding Path=Heroe}">Héroe</RadioButton>
+                                    <RadioButton x:Name="radioButtonVillano" IsChecked="{Binding Path=Villano}">Villano</RadioButton>
                                 </StackPanel>
                             </Border>
                             <Border Grid.Column="1" >
                                 <StackPanel >
 
-                                    <CheckBox x:Name="checkVengador">Vengadores</CheckBox>
-                                    <CheckBox x:Name="checkXmen">X-men</CheckBox>
+                                    <CheckBox x:Name="checkVengador" IsChecked="{Binding Path=Vengador}">Vengadores</CheckBox>
+                                    <CheckBox x:Name="checkXmen" IsChecked="{Binding Path=Xmen}">X-men</CheckBox>
                                 </StackPanel>
                             </Border>
 
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button x:Name="ButtonAceptar">Aceptar</Button>
-                            <Button x:Name="ButtonLimpiar" >Limpiar</Button>
+                            <Button x:Name="ButtonAceptar" Click="ButtonAceptar_Click" >Aceptar</Button>
+                            <Button x:Name="ButtonLimpiar" Click="ButtonLimpiar_Click" >Limpiar</Button>
                         </StackPanel>
 
                     </StackPanel>
                     <Border Background="LightPink" Grid.Column="1" Margin="10">
-                        <Image x:Name="ImagenElegir" ></Image>
+                        <Image x:Name="ImagenElegir" Source="{Binding ElementName=texBlocNombreSuperheroe}" ></Image>
                     </Border>
                 </Grid>
 
