@@ -58,7 +58,7 @@ namespace SuperHeroes2
                 }
        
 
-          //  superheroes.ElementAt(contador);
+           ImagenAvenger.Source= superheroes;
             
         }
     }
