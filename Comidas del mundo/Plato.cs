@@ -8,17 +8,94 @@ using System.Windows.Data;
 using System.Globalization;
 using System.ComponentModel;
 
-namespace Comida
+namespace Comidas_del_mundo
 {
-   public class Plato : IValueConverter, INotifyPropertyChanged
+   public class Plato :  INotifyPropertyChanged, IValueConverter
     {
-        public string Nombre { get; set; }
-        public string Imagen { get; set; }
-        public string Tipo { get; set; }
-        public bool Gluten { get; set; }
-        public bool Soja { get; set; }
-        public bool Leche { get; set; }
-        public bool Sulfitos { get; set; }
+        private string nombre;
+        private string imagen;
+        private string tipo;
+        private bool gluten;
+        private bool soja;
+        private bool leche;
+        private bool sulfitos;
+        public string Nombre {
+            get {
+                return this.nombre; }
+            set {
+                if (this.nombre != value)
+                {
+                    this.nombre = value;
+                    this.NotifyPropertyChanged("Nombre");
+                }
+            } }
+        public string Imagen {
+            get { return this.imagen; }
+            set
+            {
+                if (this.imagen != value)
+                {
+                    this.imagen = value;
+                    this.NotifyPropertyChanged("Imagen");
+                }
+            }
+        }
+        public string Tipo
+        {
+            get { return this.tipo; }
+            set
+            {
+                if (this.tipo != value)
+                {
+                    this.tipo = value;
+                    this.NotifyPropertyChanged("Tipo");
+                }
+            }
+        }
+        public bool Gluten {
+            get { return this.gluten; }
+            set
+            {
+                if (this.gluten != value)
+                {
+                    this.gluten = value;
+                    this.NotifyPropertyChanged("Gluten");
+                }
+            }
+        }
+        public bool Soja {
+            get { return this.soja; }
+            set
+            {
+                if (this.soja != value)
+                {
+                    this.soja = value;
+                    this.NotifyPropertyChanged("Soja");
+                }
+            }
+        }
+        public bool Leche {
+            get { return this.leche; }
+            set
+            {
+                if (this.leche != value)
+                {
+                    this.leche = value;
+                    this.NotifyPropertyChanged("Leche");
+                }
+            }
+        }
+        public bool Sulfitos {
+            get { return this.sulfitos; }
+            set
+            {
+                if (this.sulfitos != value)
+                {
+                    this.sulfitos = value;
+                    this.NotifyPropertyChanged("Sulfitos");
+                }
+            }
+        }
 
         public Plato(string nombre, string imagen, string tipo, bool gluten, bool soja, bool leche, bool sulfitos)
         {
@@ -48,14 +125,18 @@ namespace Comida
 
             return lista;
         }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
+
+            if (gluten)
             {
-                return 
+
+               return DesignerSerializationVisibility.Visible;
             }
+
+            return DesignerSerializationVisibility.Hidden;
         }
+
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -67,5 +148,7 @@ namespace Comida
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+       
     }
 }

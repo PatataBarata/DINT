@@ -7,60 +7,76 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <local:Plato x:Key="conversor"></local:Plato>
+        <local:Plato x:Key="plato"></local:Plato>
+        <Style x:Key="{x:Type TextBlock}">
+            <Setter  Property="TextBlock.Margin" Value="8,1,8,1" ></Setter>
+        </Style>
+        <Style x:Key="{x:Type TextBox}">
+            <Setter  Property="TextBlock.Margin" Value="8,1,8,1" ></Setter>
+        </Style>
+       
     </Window.Resources>
-    <Grid>
-        <Border>
+    <Border BorderBrush="Gray">
+        <Grid Background="Aqua" DataContext="{StaticResource plato}">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
-                    <TextBlock>Nombre del plato</TextBlock>
-                    <TextBox x:Name="NombrePlato" Text="{Binding Path=Nombre}"></TextBox>
+                <StackPanel Margin="10" Background="Gray" DockPanel.Dock="Right" Orientation="Vertical" >
+                    <TextBlock >Nombre del plato</TextBlock>
+                    <TextBox x:Name="NombrePlato" Text="{Binding Path=Nombre }"></TextBox>
                     <TextBlock>Foto del plato</TextBlock>
                     <TextBox x:Name="RutaFoto" Text="{Binding Path=Imagen}"></TextBox>
                     <TextBlock>Tipo de comida</TextBlock>
-                    <ComboBox>
+                    <ComboBox Margin="8,1,8,1" x:Name="Pais">
                         <ComboBoxItem>Americana</ComboBoxItem>
                         <ComboBoxItem>China</ComboBoxItem>
                         <ComboBoxItem>Mexicana</ComboBoxItem>
                     </ComboBox>
-                    <GroupBox Header="Alérgenos">
+                    <GroupBox Header="Alérgenos" x:Name="GroupBoxAlergenos" Margin="8,1,8,1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <CheckBox IsChecked="{Binding ElementName=milk1, Path=Visibility, Converter={StaticResource conversor}}" >leches</CheckBox>
-                                <CheckBox>Gluten</CheckBox>
+                                <CheckBox IsChecked="{Binding ElementName=milk1, Path=Visibility, Converter={StaticResource plato}}" >leches</CheckBox>
+                                <CheckBox IsChecked="{Binding ElementName=gluten1, Path=Visibility, Converter={StaticResource plato}}">Gluten</CheckBox>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <CheckBox>Soja</CheckBox>
-                                <CheckBox>Sulfitos</CheckBox>
+                                <CheckBox IsChecked="{Binding ElementName=bean1, Path=Visibility, Converter={StaticResource plato}}">Soja</CheckBox>
+                                <CheckBox IsChecked="{Binding ElementName=sulfide1, Path=Visibility, Converter={StaticResource plato}}">Sulfitos</CheckBox>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
                 </StackPanel>
-                <Border >
-                <WrapPanel>
-                        <Border>
-                        <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Path=Nombre}"></TextBlock>
-                                <Image Source="{Binding Path=Imagen}"> </Image>
-                                <DockPanel LastChildFill="False">
-                                    <Image x:Name="bandera1" DockPanel.Dock="Left" ></Image>
-                                    <Image x:Name="gluten1" Source="gluten.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
-                                    <Image x:Name="milk1" Source="milk.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
-                                    <Image x:Name="bean1" Source="soybean.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
-                                    <Image x:Name="sulfide1" Source="sulfide.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
+                <Border Margin="10" Background="AliceBlue" >
+                <ListBox>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
 
+                        <ListBoxItem Margin="10" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <Border BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Vertical" Margin="10" >
+                                <TextBlock Text="{Binding ElementName=NombrePlato, Path=Text}"></TextBlock>
+                                    <Image Stretch="UniformToFill" Width="190" Height="170" Source="{Binding ElementName=RutaFoto, Path=Text}"> </Image>
+                                <DockPanel LastChildFill="False">
+                                    <Image x:Name="bandera1" Source="{Binding ElementName=Pais}" DockPanel.Dock="Left" Width="40"></Image>
+                                    <Image x:Name="gluten1" Source="gluten.png" DockPanel.Dock="Right" Visibility="Collapsed" Width="25" ></Image>
+                                    <Image x:Name="milk1" Source="milk.png" DockPanel.Dock="Right" Visibility="Collapsed" Width="25" ></Image>
+                                    <Image x:Name="bean1" Source="soybean.png" DockPanel.Dock="Right" Visibility="Collapsed" Width="25" ></Image>
+                                    <Image x:Name="sulfide1" Source="sulfide.png" DockPanel.Dock="Right" Visibility="Collapsed" Width="25" ></Image>
                                 </DockPanel>
+                            
                         </StackPanel>
-                        </Border>
-                        
-                    </WrapPanel>
+                            </Border>
+                        </ListBoxItem>
+
+                    </ListBox>
                 </Border>
             </DockPanel>
-        </Border>
+     
         
     </Grid>
+    </Border>
 </Window>

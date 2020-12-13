@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,11 @@ namespace Comidas_del_mundo
         public MainWindow()
         {
             InitializeComponent();
+           List<Plato> platos= Plato.GetSamples("/Imagenes");
+            GroupBoxAlergenos.DataContext = platos;
+            
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }
