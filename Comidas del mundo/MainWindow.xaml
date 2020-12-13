@@ -1,0 +1,66 @@
+﻿<Window x:Class="Comidas_del_mundo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comidas_del_mundo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:Plato x:Key="conversor"></local:Plato>
+    </Window.Resources>
+    <Grid>
+        <Border>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
+                    <TextBlock>Nombre del plato</TextBlock>
+                    <TextBox x:Name="NombrePlato" Text="{Binding Path=Nombre}"></TextBox>
+                    <TextBlock>Foto del plato</TextBlock>
+                    <TextBox x:Name="RutaFoto" Text="{Binding Path=Imagen}"></TextBox>
+                    <TextBlock>Tipo de comida</TextBlock>
+                    <ComboBox>
+                        <ComboBoxItem>Americana</ComboBoxItem>
+                        <ComboBoxItem>China</ComboBoxItem>
+                        <ComboBoxItem>Mexicana</ComboBoxItem>
+                    </ComboBox>
+                    <GroupBox Header="Alérgenos">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <CheckBox IsChecked="{Binding ElementName=milk1, Path=Visibility, Converter={StaticResource conversor}}" >leches</CheckBox>
+                                <CheckBox>Gluten</CheckBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <CheckBox>Soja</CheckBox>
+                                <CheckBox>Sulfitos</CheckBox>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+                <Border >
+                <WrapPanel>
+                        <Border>
+                        <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Path=Nombre}"></TextBlock>
+                                <Image Source="{Binding Path=Imagen}"> </Image>
+                                <DockPanel LastChildFill="False">
+                                    <Image x:Name="bandera1" DockPanel.Dock="Left" ></Image>
+                                    <Image x:Name="gluten1" Source="gluten.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
+                                    <Image x:Name="milk1" Source="milk.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
+                                    <Image x:Name="bean1" Source="soybean.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
+                                    <Image x:Name="sulfide1" Source="sulfide.png" DockPanel.Dock="Right" Visibility="Collapsed"></Image>
+
+                                </DockPanel>
+                        </StackPanel>
+                        </Border>
+                        
+                    </WrapPanel>
+                </Border>
+            </DockPanel>
+        </Border>
+        
+    </Grid>
+</Window>
