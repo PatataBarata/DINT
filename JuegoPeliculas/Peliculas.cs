@@ -9,6 +9,7 @@ namespace JuegoPeliculas
        private string Imagen;
        private int NivelDificultad;
        private string Genero;
+       enum iconosGenero {feliz,drama, accion, miedo, ficcion};//de momento usaremos un enum
 
         public string titulo
         {
@@ -92,14 +93,15 @@ namespace JuegoPeliculas
             Imagen = imagen;
             NivelDificultad = nivelDificultad;
             Genero = genero;
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-    public void NotifyPropertyChanged(string propertyName)
-    {
-        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+         public void NotifyPropertyChanged(string propertyName)
+         {
+             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+         }
 
     }
 

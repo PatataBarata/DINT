@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoPeliculas"
         mc:Ignorable="d"
-        Title="Juego De Peliculas" Height="450" Width="800" MinWidth="500" MinHeight="570"
+        Title="Juego De Peliculas" Height="496.859" Width="704.159" MinWidth="500" MinHeight="570"
         Icon="Pelis.ico">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
@@ -18,8 +18,11 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Margin" Value="10,2"></Setter>
         </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="10,3"></Setter>
+        </Style>
     </Window.Resources>
-        
+
     <TabControl>
         <TabItem Header="Jugar">
             <DockPanel >
@@ -34,31 +37,30 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-
-                    <DockPanel  Margin="20">
+                  <DockPanel  Margin="20">
                         <TextBlock DockPanel.Dock="Top">Cartel de la película</TextBlock>
                         <Image Margin="3" Source="https://www.experimenta.es/wp-content/uploads/2018/03/metropolis-la-boca-experimenta-02-800x1200.jpg"></Image>
                     </DockPanel>
-                    <DockPanel Grid.Column="2" Margin="20">
+                    <DockPanel Grid.Column="2" Margin="20" Grid.RowSpan="2">
                         <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
-                        <DockPanel LastChildFill="False" Margin="0,10">
-                        <TextBlock DockPanel.Dock="Top" >Puntuación total</TextBlock>
-                        <TextBox HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
-                            <Button DockPanel.Dock="Top" Width="95" Click="Button_Click" Content="Nueva partida" />
-                        </DockPanel>
+                            <DockPanel LastChildFill="False" Margin="0,10">
+                                <TextBlock DockPanel.Dock="Top" >Puntuación total</TextBlock>
+                                <TextBox HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
+                                <Button DockPanel.Dock="Top" Width="95" Click="Button_Click" Content="Nueva partida" />
+                            </DockPanel>
                         </DockPanel>
                         <TextBlock Margin="10,2" DockPanel.Dock="Top">Título de la película</TextBlock>
                         <DockPanel DockPanel.Dock="Top">
-                        <Button DockPanel.Dock="Right" Width="70">Validar</Button>
-                        <TextBox Margin="10,5"></TextBox>
+                            <Button DockPanel.Dock="Right" Width="70">Validar</Button>
+                            <TextBox Margin="10,5"></TextBox>
                         </DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0,10">
-                        <CheckBox Margin="10">Ver pista</CheckBox>
-                        <TextBlock HorizontalAlignment="Center">quitar luego</TextBlock>
+                            <CheckBox Margin="10">Ver pista</CheckBox>
+                            <TextBlock HorizontalAlignment="Center">quitar luego</TextBlock>
                         </StackPanel>
                         <DockPanel Margin="20" DockPanel.Dock="Bottom" >
-                        <Image DockPanel.Dock="Top" HorizontalAlignment="Center" Source="accion.png" Height="64"/>
-                        <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Bottom" Margin="12">Género</TextBlock>
+                            <Image DockPanel.Dock="Top" HorizontalAlignment="Center" Source="accion.png" Height="64"/>
+                            <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Bottom" Margin="12">Género</TextBlock>
                         </DockPanel>
                     </DockPanel>
                 </Grid>
@@ -67,48 +69,55 @@
         <TabItem Header="Gestionar">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DockPanel Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+           
 
-                    <DockPanel>
-                    <TextBox x:Name="dentro" DockPanel.Dock="Top" MinHeight="350" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10"></TextBox>
-                    <StackPanel>
-                        <TextBlock >Título de la película</TextBlock>
-                        <TextBlock >Pista de la película</TextBlock>
-                        <TextBlock>Imágen de la película</TextBlock>
-                        <TextBlock>Nivel de dificultad</TextBlock>
-                    </StackPanel>
+                    <TextBox x:Name="dentro" DockPanel.Dock="Top" MinHeight="350" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" ></TextBox>
+                <DockPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" >
+                        <StackPanel >
+                            <TextBlock >Título de la película</TextBlock>
+                            <TextBlock >Pista de la película</TextBlock>
+                            <TextBlock>Imágen de la película</TextBlock>
+                            <TextBlock>Nivel de dificultad</TextBlock>
+                        </StackPanel>
                         <StackPanel>
-                        <TextBox></TextBox>
-                        <TextBox ></TextBox>
-                        <TextBox ></TextBox>
+                            <TextBox></TextBox>
+                            <TextBox ></TextBox>
+                            <TextBox ></TextBox>
                             <DockPanel>
-                            <StackPanel>
-                                <RadioButton IsChecked="True">Fácil</RadioButton>
-                                <RadioButton>Normal</RadioButton>
-                                <RadioButton>Difícil</RadioButton>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock>Género</TextBlock>
-                                <ListBox></ListBox>
-                            </StackPanel>
+                                <StackPanel>
+                                    <RadioButton IsChecked="True">Fácil</RadioButton>
+                                    <RadioButton>Normal</RadioButton>
+                                    <RadioButton>Difícil</RadioButton>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock>Género</TextBlock>
+                                    <ListBox></ListBox>
+                                </StackPanel>
                             </DockPanel>
                         </StackPanel>
                     </DockPanel >
-                             
+
+                <DockPanel Grid.Column="3" Margin="0,5" Grid.RowSpan="1" LastChildFill="False">
+                    <Button Click="CargarJSON" DockPanel.Dock="Top">Cargar de JSON</Button>
+                    <Button Click="GuardarJSON" DockPanel.Dock="Top">Guardar en JSON</Button>
+                    <Button DockPanel.Dock="Bottom" >Añadir película</Button>
+                    <Button DockPanel.Dock="Bottom">Eliminar película</Button>
+
                 </DockPanel>
-                <StackPanel Grid.Column="3" Margin="5">
-                    <Button Click="CargarJSON">Cargar de JSON</Button>
-                    <Button Click="GuardarJSON">Guardar en JSON</Button>
-                    <Button>Eliminar película</Button>
-                    <Button>Añadir película</Button>
-                    <Button>Examinar</Button>
-
+                <StackPanel Grid.Column="3" Grid.Row="1">
                 </StackPanel>
-
+                <DockPanel Grid.Column="3" Grid.Row="3" LastChildFill="False" Margin="5">
+                    <Button Margin="0,40" VerticalAlignment="Top" >Examinar</Button>
+                </DockPanel>
             </Grid>
 
         </TabItem>
