@@ -26,6 +26,7 @@ namespace JuegoPeliculas
         public MainWindow()
         {
             InitializeComponent();
+            //Ahora va github??
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
