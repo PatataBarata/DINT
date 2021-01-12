@@ -103,7 +103,7 @@
     <Resource Include="arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="miedo.png" />
+    <Resource Include="terror.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="accion.png" />
@@ -112,10 +112,10 @@
     <Resource Include="drama.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ficcion.png" />
+    <Resource Include="ciencia-ficcion.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="feliz.png" />
+    <Resource Include="comedia.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pelis.ico" />

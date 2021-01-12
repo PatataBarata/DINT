@@ -4,22 +4,28 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace JuegoPeliculas 
 {
     class Juego : INotifyPropertyChanged //falta hacer el propertychange de lo que se necesite (si se necesita)
     {
         int Puntos;
-        int dificultad;
-        bool pistaVista;
+        int Dificultad;
+        bool PistaVista;
         List<Peliculas> peliculas;
         public static Random random = new Random();
 
+        public int puntos { get; set; }
+        public int dificultad { get; set; }
+        public bool pistaVista { get; set; }
+
         public Juego(int puntos, int dificultad, bool pistaVista, List<Peliculas> peliculas)
         {
-            Puntos = puntos;
-            this.dificultad = dificultad;
-            this.pistaVista = pistaVista;
+            // arreglar puntos
+            Puntos = 0;
+            this.Dificultad = dificultad;
+            this.PistaVista = pistaVista;
             this.peliculas = peliculas;
         }
 
@@ -27,20 +33,6 @@ namespace JuegoPeliculas
         {
         }
 
- 
-
-        public static void JugarAlJuego()
-        {
-            
-            if (/*peliculas.Count+1 > 5*/true)
-            {
-                InicarJuego();
-                //TODO selecionar 5 peliculas aleatorias.
-            }
-            else 
-                //sacar dialogo diciendo: 
-                Console.WriteLine(" No tenemos peliculas para jugar");
-        }
 
         private static void InicarJuego()
         {

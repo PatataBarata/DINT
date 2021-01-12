@@ -92,7 +92,7 @@ namespace JuegoPeliculas
             Pista = pista;
             Imagen = imagen;
             NivelDificultad = nivelDificultad;
-            Genero = genero;
+            Genero = genero + ".png";
             
         }
 

@@ -35,33 +35,39 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                  <DockPanel  Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel  Margin="20" Grid.RowSpan="2">
                         <TextBlock DockPanel.Dock="Top">Cartel de la película</TextBlock>
-                        <Image Margin="3" Source="https://www.experimenta.es/wp-content/uploads/2018/03/metropolis-la-boca-experimenta-02-800x1200.jpg"></Image>
+                        <Image Margin="3" x:Name="posterImage" Source="{Binding Path=imagen}"></Image>
                     </DockPanel>
-                    <DockPanel Grid.Column="2" Margin="20" Grid.RowSpan="2">
+                    <DockPanel x:Name="JuegoDockPanel" Grid.Column="2" Margin="20" Grid.RowSpan="2" LastChildFill="False">
                         <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
                             <DockPanel LastChildFill="False" Margin="0,10">
                                 <TextBlock DockPanel.Dock="Top" >Puntuación total</TextBlock>
-                                <TextBox HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
-                                <Button DockPanel.Dock="Top" Width="95" Click="Button_Click" Content="Nueva partida" />
+                                <TextBox x:Name="puntosTotalesTextBox" Text="{Binding Path=puntos}" HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
+                                <Button DockPanel.Dock="Top" Width="95" Click="NuevaPartidaButton_Click" Content="Nueva partida" />
                             </DockPanel>
                         </DockPanel>
                         <TextBlock Margin="10,2" DockPanel.Dock="Top">Título de la película</TextBlock>
                         <DockPanel DockPanel.Dock="Top">
-                            <Button DockPanel.Dock="Right" Width="70">Validar</Button>
-                            <TextBox Margin="10,5"></TextBox>
+                            <Button x:Name="validarPeliculaButton" Click="validadPeliculaButton_Click" DockPanel.Dock="Right" Width="70">Validar</Button>
+                            <TextBox x:Name="validarTituloTextBox" Margin="10,5"></TextBox>
                         </DockPanel>
-                        <StackPanel DockPanel.Dock="Top" Margin="0,10">
-                            <CheckBox Margin="10">Ver pista</CheckBox>
-                            <TextBlock HorizontalAlignment="Center">quitar luego</TextBlock>
-                        </StackPanel>
                         <DockPanel Margin="20" DockPanel.Dock="Bottom" >
-                            <Image DockPanel.Dock="Top" HorizontalAlignment="Center" Source="accion.png" Height="64"/>
-                            <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Bottom" Margin="12">Género</TextBlock>
+                            <Image x:Name="generoImagen" DockPanel.Dock="Top" HorizontalAlignment="Center" Source="{Binding Path=genero}" Height="64"/>
+                            <TextBlock HorizontalAlignment="Center"  DockPanel.Dock="Bottom" Margin="12">Género</TextBlock>
+                            
                         </DockPanel>
+                        <StackPanel DockPanel.Dock="Bottom" Margin="0,10">
+                            <CheckBox Margin="10" x:Name="darPistaCheckBox" Checked="darPistaCheckBox_Checked" >Ver pista</CheckBox>
+                            <TextBlock x:Name="darPixtaTextBlok" Text="{Binding Path=pista}" HorizontalAlignment="Center" Visibility="Hidden"></TextBlock>
+                        </StackPanel>
                     </DockPanel>
                 </Grid>
             </DockPanel>
@@ -100,8 +106,14 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock>Género</TextBlock>
-                                    <ListBox></ListBox>
-                                </StackPanel>
+                                <ComboBox MinWidth="80">
+                                    <ComboBoxItem>comedia</ComboBoxItem>
+                                    <ComboBoxItem>drama</ComboBoxItem>
+                                    <ComboBoxItem>accion</ComboBoxItem>
+                                    <ComboBoxItem>terror</ComboBoxItem>
+                                    <ComboBoxItem>ciencia-ficcion</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
                             </DockPanel>
                         </StackPanel>
                     </DockPanel >
