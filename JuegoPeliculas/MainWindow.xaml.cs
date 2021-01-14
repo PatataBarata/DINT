@@ -25,16 +25,20 @@ namespace JuegoPeliculas
         //quitar, solo para hacer pruebas.
         Peliculas pelicula = new Peliculas("metropolis", "Mujer bionica blanco y negro", "https://www.experimenta.es/wp-content/uploads/2018/03/metropolis-la-boca-experimenta-02-800x1200.jpg" ,2, "ciencia-ficcion");
         List<Peliculas> peliculas=new List<Peliculas>();  //quitar, solo para hacer pruebas.
-        Juego juego = new Juego();
+        List<Juego> cincoPeliculas; //iniciar las peliculas del juego
+        Juego juego;
 
         public MainWindow()
         {
             InitializeComponent();
             peliculas.Add(pelicula); //quitar, solo para hacer pruebas.
+            // peliculas = Peliculas.GuardarPeliculas(); //usar cuando este arreglado.
            
             posterImage.DataContext = peliculas;
             JuegoDockPanel.DataContext = peliculas;
-            puntosTotalesTextBox.DataContext = juego; 
+            JuegoStackPanel.DataContext = peliculas;
+            puntosTotalesTextBox.DataContext = juego;
+            textNumeroPagina.Text = cincoPeliculas.Count.ToString();
                    
         }
 
@@ -42,7 +46,7 @@ namespace JuegoPeliculas
         {
             if (peliculas.Count()+1 > 5)
             {
-                //InicarJuego();
+                juego.InicarJuego();
                 //TODO selecionar 5 peliculas aleatorias.
             }
             else
@@ -72,7 +76,9 @@ namespace JuegoPeliculas
 
         private void darPistaCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            //se puede hacer con trigger pero como tengo que controlar los puntos veo mejor hacerlo aqui.
             darPixtaTextBlok.Visibility = Visibility;
+            juego.pistaVista = true;
             //juego.bajar puntos a la mitad por miron
         }
 

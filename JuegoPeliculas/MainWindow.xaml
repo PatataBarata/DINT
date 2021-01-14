@@ -8,6 +8,10 @@
         Title="Juego De Peliculas" Height="496.859" Width="704.159" MinWidth="500" MinHeight="570"
         Icon="Pelis.ico">
     <Window.Resources>
+        <local:Peliculas x:Key="nuevaPeli">
+
+        </local:Peliculas>
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="125"></Setter>
             <Setter Property="Margin" Value="10,5"></Setter>
@@ -29,7 +33,10 @@
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="8">
                     <Image FlowDirection="RightToLeft" x:Name="ImagenFlechaIzq" Source="arrow.png" Width="20" ></Image>
-                    <TextBlock x:Name="textNumeroPagina" Text="1/3"></TextBlock>
+                    <TextBlock Margin="0" x:Name="textNumeroPagina"></TextBlock>
+                    <TextBlock Margin="0" Text="/"></TextBlock>
+                    <TextBlock Margin="0"  Text="5"></TextBlock>
+
                     <Image   x:Name="ImagenFlechaDer" Source="arrow.png" Width="20" ></Image>
                 </StackPanel>
                 <Grid>
@@ -94,15 +101,15 @@
                             <TextBlock>Imágen de la película</TextBlock>
                             <TextBlock>Nivel de dificultad</TextBlock>
                         </StackPanel>
-                        <StackPanel>
-                            <TextBox></TextBox>
-                            <TextBox ></TextBox>
-                            <TextBox ></TextBox>
+                    <StackPanel x:Name="JuegoStackPanel">
+                            <TextBox Text="{Binding Path=Titulo}"></TextBox>
+                        <TextBox Text="{Binding Path=Pista}" ></TextBox>
+                        <TextBox Text="{Binding Path=Imagen}"></TextBox>
                             <DockPanel>
                                 <StackPanel>
-                                    <RadioButton IsChecked="True">Fácil</RadioButton>
-                                    <RadioButton>Normal</RadioButton>
-                                    <RadioButton>Difícil</RadioButton>
+                                    <RadioButton IsChecked="{Binding Path=Facil}">Fácil</RadioButton>
+                                <RadioButton IsChecked="{Binding Path=Normal}">Normal</RadioButton>
+                                <RadioButton IsChecked="{Binding Path=Dificil}">Difícil</RadioButton>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock>Género</TextBlock>

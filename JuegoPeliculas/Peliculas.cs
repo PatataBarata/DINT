@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace JuegoPeliculas
 {
@@ -7,9 +8,13 @@ namespace JuegoPeliculas
        private string Titulo;
        private string Pista;
        private string Imagen;
-       private int NivelDificultad;
+       private int NivelDificultad; // si el nivel de difuculta es facil valdra 1, si es normal 3, y si el dificil 5
+       private bool Facil; //crear los geter y seter para el bindeo
+       private bool Normal;//crear los geter y seter para el bindeo
+       private bool Dificil;//crear los geter y seter para el bindeo
+        enum niveles {Facil,Normal, Dificil };
        private string Genero;
-       enum iconosGenero {feliz,drama, accion, miedo, ficcion};//de momento usaremos un enum
+       enum iconosGenero {comedia,drama, accion, terror,cienciaficcion};//de momento usaremos un enum // no me convence.....
 
         public string titulo
         {
@@ -94,6 +99,17 @@ namespace JuegoPeliculas
             NivelDificultad = nivelDificultad;
             Genero = genero + ".png";
             
+        }
+
+        //arreglar el nombre para poner uno mas correcto
+        public static List<Peliculas> GuardarPeliculas() {
+
+            List<Peliculas> todasLasPeliculas = new List<Peliculas>();
+           
+            // coger las peliculas con JSON...
+            todasLasPeliculas.Add(TODO);
+
+            return todasLasPeliculas;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
