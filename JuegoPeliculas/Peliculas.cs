@@ -9,13 +9,45 @@ namespace JuegoPeliculas
        private string Pista;
        private string Imagen;
        private int NivelDificultad; // si el nivel de difuculta es facil valdra 1, si es normal 3, y si el dificil 5
-       private bool Facil; //crear los geter y seter para el bindeo
-       private bool Normal;//crear los geter y seter para el bindeo
-       private bool Dificil;//crear los geter y seter para el bindeo
-        enum niveles {Facil,Normal, Dificil };
+       private bool Facil;
+       private bool Normal;
+       private bool Dificil;
+      //  enum niveles {Facil,Normal, Dificil };
        private string Genero;
        enum iconosGenero {comedia,drama, accion, terror,cienciaficcion};//de momento usaremos un enum // no me convence.....
 
+
+        public bool facil
+        {
+            get => Facil;
+            set
+            {
+                Facil = value;
+                NotifyPropertyChanged("Facil");
+            }
+        }
+
+ 
+        public bool normal
+        {
+            get => Normal;
+            set
+            {
+                Normal = value;
+                NotifyPropertyChanged("Normal");
+            }
+        }
+
+
+        public bool dificil
+        {
+            get => Dificil;
+            set
+            {
+                Normal = value;
+                NotifyPropertyChanged("Dificil");
+            }
+        }
         public string titulo
         {
             get { return Titulo; }
@@ -107,7 +139,7 @@ namespace JuegoPeliculas
             List<Peliculas> todasLasPeliculas = new List<Peliculas>();
            
             // coger las peliculas con JSON...
-            todasLasPeliculas.Add(TODO);
+            //todasLasPeliculas.Add(TODO);
 
             return todasLasPeliculas;
         }

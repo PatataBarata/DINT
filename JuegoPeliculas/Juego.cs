@@ -1,60 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace JuegoPeliculas 
 {
     class Juego : INotifyPropertyChanged //falta hacer el propertychange de lo que se necesite (si se necesita)
     {
-        const int PUNTOSBASE = 0;
-        int Puntos;
-        int Dificultad;//darle el valor segun los boolean de facil, normal, dificil
-        bool PistaVista;
+       const int PUNTOSBASE = 0;
+       private int Puntos;
+       private int Dificultad;//darle el valor segun los boolean de facil, normal, dificil
+       private  bool PistaVista;
         
-        List<Peliculas> peliculas;//pasar todas las peliculas que tenemos
+       // List<Peliculas> peliculas;//pasar todas las peliculas que tenemos
         public static Random random = new Random();
 
-        public bool facil { get; set; }
-        public int puntos { get; set; }
         public int dificultad { get; set; }
-        public bool pistaVista { get; set; }
-
-        public List<Peliculas> cincoPeliculas=new List<Peliculas>();
-
-        public Juego(List<Peliculas> cincoPeliculas)
+        public bool pistaVista
         {
-            this.cincoPeliculas = cincoPeliculas;
-            // agreglar...TODO
+            get => PistaVista;
+            set
+            {
+                PistaVista = value;
+                NotifyPropertyChanged("Facil");
+            }
         }
 
-        public Juego(int puntos, int dificultad, bool pistaVista, List<Peliculas> peliculas)
+        public Juego(int puntos, int dificultad, bool pistaVista)
         {
-            // arreglar puntos
+            
             Puntos = 0;
             this.Dificultad = dificultad;
             PistaVista = false;
-            this.peliculas = peliculas;
+            
         }
 
         public Juego()
         {
         }
-        // planteamiento inicial
-        public void CalcularPuntos() {
+        public void CalcularPuntos(int puntosDePelicula) {
 
             if (PistaVista) {
                 
-                Puntos=  (PUNTOSBASE / 2)*dificultad;
+                Puntos=  (PUNTOSBASE / 2)* puntosDePelicula;
             }
-                Puntos =  PUNTOSBASE * dificultad;    
+                Puntos =  PUNTOSBASE * puntosDePelicula;    
         }
-        public void InicarJuego()
+        public List<Peliculas> InicarJuego(List<Peliculas> peliculas)
         {
           List<int> yaElegidas = new List<int>();
+          List<Peliculas> cincoPeliculas=new List<Peliculas>();
 
             while (yaElegidas.Count() + 1 < 5)
             {
@@ -66,8 +63,13 @@ namespace JuegoPeliculas
 
                 }
             }
+            return cincoPeliculas;
+        }
 
-        }  
+        internal List<Peliculas> InicarJuego(ObservableCollection<Peliculas> listaPeliculas)
+        {
+            throw new NotImplementedException();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
