@@ -52,17 +52,16 @@
 
     <TabControl>
         <TabItem Header="Jugar">
-            <DockPanel >
+            <DockPanel x:Name="juegoPeliculasGrid">
 
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="8">
-                    <Image FlowDirection="RightToLeft" x:Name="ImagenFlechaIzq" Source="arrow.png" Width="20" ></Image>
+                <StackPanel x:Name="flechas" Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="8">
+                    <Image FlowDirection="RightToLeft" x:Name="ImagenFlechaIzq" MouseLeftButtonUp="ImagenFlechaIzq_MouseLeftButtonUp" Source="arrow.png" Width="20" ></Image>
                     <TextBlock Margin="0" x:Name="textNumeroPaginauno">0</TextBlock>
                     <TextBlock Margin="0" Text="/"></TextBlock>
                     <TextBlock Margin="0" x:Name="textNumeroPagina">0</TextBlock>
-
-                    <Image   x:Name="ImagenFlechaDer" Source="arrow.png" Width="20" ></Image>
+                    <Image  MouseLeftButtonUp="ImagenFlechaDer_MouseLeftButtonUp" x:Name="ImagenFlechaDer" Source="arrow.png" Width="20" ></Image>
                 </StackPanel>
-                <Grid>
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition ></ColumnDefinition>
@@ -74,13 +73,13 @@
 
                     <DockPanel  Margin="20" Grid.RowSpan="2">
                         <TextBlock DockPanel.Dock="Top">Cartel de la película</TextBlock>
-                        <Image Margin="3" x:Name="posterImage"  Source="{Binding Path=imagen}"></Image>
+                        <Image Margin="3" x:Name="posterImage"  Source="{Binding Path=Imagen}"></Image>
                     </DockPanel>
                     <DockPanel x:Name="JuegoDockPanel" Grid.Column="2" Margin="20" Grid.RowSpan="2" LastChildFill="False">
                         <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
                             <DockPanel LastChildFill="False" Margin="0,10">
                                 <TextBlock DockPanel.Dock="Top" >Puntuación total</TextBlock>
-                                <TextBox x:Name="puntosTotalesTextBox" Text="{Binding Path=puntos}" HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
+                                <TextBox IsReadOnly="True" x:Name="puntosTotalesTextBox" Text="{Binding Path=Puntos}" HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
                                 <Button DockPanel.Dock="Top" Width="95" Click="NuevaPartidaButton_Click" Content="Nueva partida" />
                             </DockPanel>
                         </DockPanel>
@@ -90,13 +89,13 @@
                             <TextBox x:Name="validarTituloTextBox" Margin="10,5"></TextBox>
                         </DockPanel>
                         <DockPanel Margin="20" DockPanel.Dock="Bottom" >
-                            <Image x:Name="generoImagen" DockPanel.Dock="Top" HorizontalAlignment="Center" Source="{Binding Path=genero}" Height="64"/>
+                            <Image x:Name="generoImagen" DockPanel.Dock="Top" HorizontalAlignment="Center" Source="{Binding Path=Genero}" Height="64"/>
                             <TextBlock HorizontalAlignment="Center"  DockPanel.Dock="Bottom" Margin="12">Género</TextBlock>
                             
                         </DockPanel>
                         <StackPanel DockPanel.Dock="Bottom" Margin="0,10">
                             <CheckBox Margin="10" x:Name="darPistaCheckBox" Checked="darPistaCheckBox_Checked" >Ver pista</CheckBox>
-                            <TextBlock x:Name="darPixtaTextBlok" Text="{Binding Path=pista}" HorizontalAlignment="Center" Visibility="Hidden"></TextBlock>
+                            <TextBlock x:Name="darPixtaTextBlok" Text="{Binding Path=Pista}" HorizontalAlignment="Center" Visibility="Hidden"></TextBlock>
                         </StackPanel>
                     </DockPanel>
                 </Grid>
@@ -141,7 +140,7 @@
                                   DataContext="{StaticResource nuevaPeli}">
                             <TextBox Text="{Binding Path=titulo}"></TextBox>
                         <TextBox Text="{Binding Path=pista}" ></TextBox>
-                        <TextBox Text="{Binding Path=imagen}"></TextBox>
+                        <TextBox x:Name="ImagenPeliTexBox" Text="{Binding Path=imagen}"></TextBox>
                             <DockPanel>
                                 <StackPanel>
                                 <RadioButton IsChecked="{Binding Path=facil}">Fácil</RadioButton>
@@ -172,7 +171,7 @@
                 <StackPanel Grid.Column="3" Grid.Row="1">
                 </StackPanel>
                 <DockPanel Grid.Column="3" Grid.Row="3" LastChildFill="False" Margin="5">
-                    <Button Margin="0,40" VerticalAlignment="Top" >Examinar</Button>
+                    <Button x:Name="ExaminarButton" Click="ExaminarButton_Click" Margin="0,40" VerticalAlignment="Top" >Examinar</Button>
                 </DockPanel>
             </Grid>
 
