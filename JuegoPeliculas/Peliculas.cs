@@ -123,15 +123,18 @@ namespace JuegoPeliculas
         {
         }
 
-        public Peliculas(string titulo, string pista, string imagen, int nivelDificultad, string genero)
+        public Peliculas(string titulo, string pista, string imagen, bool facil, bool normal, bool dificil, string genero)
         {
             Titulo = titulo;
             Pista = pista;
             Imagen = imagen;
-            NivelDificultad = nivelDificultad;
-            Genero = genero + ".png";
-            
+            Facil = facil;
+            Normal = normal;
+            Dificil = dificil;
+            Genero = genero;
         }
+
+
 
         //arreglar el nombre para poner uno mas correcto
         public static List<Peliculas> GuardarPeliculas() {

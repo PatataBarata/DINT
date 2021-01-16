@@ -48,28 +48,37 @@ namespace JuegoPeliculas
             }
                 Puntos =  PUNTOSBASE * puntosDePelicula;    
         }
-        public List<Peliculas> InicarJuego(List<Peliculas> peliculas)
+        public ObservableCollection<Peliculas> InicarJuego(ObservableCollection<Peliculas> peliculas)
         {
           List<int> yaElegidas = new List<int>();
-          List<Peliculas> cincoPeliculas=new List<Peliculas>();
-
-            while (yaElegidas.Count() + 1 < 5)
+          ObservableCollection<Peliculas> cincoPeliculas=new ObservableCollection<Peliculas>();
+            
+            while (cincoPeliculas.Count()< 5)
             {
-                int aleatoria = random.Next(peliculas.Count()+1);
+                int aleatoria = random.Next(peliculas.Count());// esto es para saber cuantas peliculas tenemos
+
+                if (!cincoPeliculas.Contains(peliculas[aleatoria]))
+                {
+                    cincoPeliculas.Add(peliculas[aleatoria]);
+
+                }
+            }
+
+            /*
+            while (yaElegidas.Count()  < 5)
+            {
+                int aleatoria = random.Next(peliculas.Count());
                 if (!yaElegidas.Contains(aleatoria))
                 {
                     yaElegidas.Add(aleatoria);
                      cincoPeliculas.Add(peliculas[aleatoria]);
 
                 }
-            }
+            }*/
             return cincoPeliculas;
         }
 
-        internal List<Peliculas> InicarJuego(ObservableCollection<Peliculas> listaPeliculas)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 
