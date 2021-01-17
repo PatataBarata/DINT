@@ -14,7 +14,7 @@ namespace JuegoPeliculas
        private int Dificultad;//darle el valor segun los boolean de facil, normal, dificil
        private  bool PistaVista;
         
-       // List<Peliculas> peliculas;//pasar todas las peliculas que tenemos
+  
         public static Random random = new Random();
 
         public int dificultad { get; set; }
@@ -50,7 +50,7 @@ namespace JuegoPeliculas
         }
         public ObservableCollection<Peliculas> InicarJuego(ObservableCollection<Peliculas> peliculas)
         {
-          List<int> yaElegidas = new List<int>();
+   
           ObservableCollection<Peliculas> cincoPeliculas=new ObservableCollection<Peliculas>();
             
             while (cincoPeliculas.Count()< 5)
@@ -63,18 +63,6 @@ namespace JuegoPeliculas
 
                 }
             }
-
-            /*
-            while (yaElegidas.Count()  < 5)
-            {
-                int aleatoria = random.Next(peliculas.Count());
-                if (!yaElegidas.Contains(aleatoria))
-                {
-                    yaElegidas.Add(aleatoria);
-                     cincoPeliculas.Add(peliculas[aleatoria]);
-
-                }
-            }*/
             return cincoPeliculas;
         }
 

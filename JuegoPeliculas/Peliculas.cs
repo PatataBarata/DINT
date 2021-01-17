@@ -12,9 +12,8 @@ namespace JuegoPeliculas
        private bool Facil;
        private bool Normal;
        private bool Dificil;
-      //  enum niveles {Facil,Normal, Dificil };
        private string Genero;
-       enum iconosGenero {comedia,drama, accion, terror,cienciaficcion};//de momento usaremos un enum // no me convence.....
+      
 
 
         public bool facil
@@ -133,8 +132,6 @@ namespace JuegoPeliculas
             Dificil = dificil;
             Genero = genero;
         }
-
-
 
         //arreglar el nombre para poner uno mas correcto
         public static List<Peliculas> GuardarPeliculas() {

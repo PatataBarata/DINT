@@ -18,26 +18,29 @@ namespace JuegoPeliculas
 
        // Peliculas pelicula = new Peliculas("metropolis", "Mujer bionica blanco y negro", "https://www.experimenta.es/wp-content/uploads/2018/03/metropolis-la-boca-experimenta-02-800x1200.jpg" ,2, "ciencia-ficcion");
       
-        ObservableCollection<Peliculas> cincoPeliculas=new ObservableCollection<Peliculas>(); //iniciar las peliculas del juego
+        ObservableCollection<Peliculas> cincoPeliculas=new ObservableCollection<Peliculas>();
         ObservableCollection<Peliculas> listaPeliculas=new ObservableCollection<Peliculas>();
         Juego juego=new Juego();
-
+        Peliculas nuevaPeli;
         public MainWindow()
         {
             InitializeComponent();
-            // peliculas.Add(pelicula); //quitar, solo para hacer pruebas.
+
+            nuevaPeli = new Peliculas();
+            nuevaPeli = (Peliculas)JuegoStackPanel.DataContext;
+
             // peliculas = Peliculas.GuardarPeliculas(); //usar cuando este arreglado.
-          
+
             juegoPeliculasGrid.DataContext = cincoPeliculas;
 
 
            //  JuegoDockPanel.DataContext = listaPeliculas;
-           // JuegoStackPanel.DataContext = listaPeliculas;
+            JuegoStackPanel.DataContext = listaPeliculas;
 
             puntosTotalesTextBox.DataContext = juego;// para los puntos del juego que no va
 
             dentro.DataContext = listaPeliculas;
-            //textNumeroPagina.Text = cincoPeliculas.Count.ToString(); //poner cuando funcione
+
                    
         }
 
@@ -60,7 +63,7 @@ namespace JuegoPeliculas
         private void CargarJSON(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "JSON file (*.JSON)|*.JSON"; //ya funciona
+                openFileDialog.Filter = "JSON file (*.JSON)|*.JSON"; 
             if (openFileDialog.ShowDialog() == true)
             {
                 using (StreamReader jsonStream = File.OpenText(openFileDialog.FileName))
@@ -75,12 +78,12 @@ namespace JuegoPeliculas
                 }
             }
 
-        }
+        }//en un principio no funciona correctamente.
 
         private void GuardarJSON(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "JSON file (*.JSON)|*.JSON"; //ya funciona
+                saveFileDialog.Filter = "JSON file (*.JSON)|*.JSON"; 
             if (saveFileDialog.ShowDialog() == true)
             {
                 string guardadoPeliculas = JsonConvert.SerializeObject(listaPeliculas); 
@@ -90,7 +93,7 @@ namespace JuegoPeliculas
 
         private void darPistaCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            //se puede hacer con trigger pero como tengo que controlar los puntos veo mejor hacerlo aqui.
+           
             darPixtaTextBlok.Visibility = Visibility.Visible;
             juego.pistaVista = true; //Peta TODO arreglar
           //   juego.CalcularPuntos(pelicula.nivelDificultad); //mirar que esta mal, TODO
@@ -113,9 +116,20 @@ namespace JuegoPeliculas
 
         private void AnyadirButton_Click(object sender, RoutedEventArgs e)
         {
+            nuevaPeli = new Peliculas();
+            //Peliculas peliculaAnyadir = new Peliculas(anyadirPeliTituloTextBox.Text, anyadirPeliPistaTextbos.Text, anyadirImagenPeliTexBox.Text, (bool)facilRadioButton.IsChecked, (bool)normalRadioButton.IsChecked, (bool)dificilRadioButton.IsChecked, generoComboBox.Text);
+
+            nuevaPeli.titulo = anyadirPeliTituloTextBox.Text;
+            nuevaPeli.pista = anyadirPeliPistaTextbos.Text;
+            nuevaPeli.imagen  = anyadirImagenPeliTexBox.Text;
+            nuevaPeli.genero = generoComboBox.Text;
+            nuevaPeli.facil = (bool)facilRadioButton.IsChecked;
+            nuevaPeli.normal = (bool)normalRadioButton.IsChecked;
+            nuevaPeli.dificil = (bool)dificilRadioButton.IsChecked;
+
             if (dentro.SelectedItem==null)
             {
-                listaPeliculas.Add((Peliculas)this.Resources["nuevaPeli"]);
+                listaPeliculas.Add(nuevaPeli);
                 MessageBox.Show("Pelicula añadida", "Juego peliculas", MessageBoxButton.OK, MessageBoxImage.Information);
             }
           
@@ -160,12 +174,12 @@ namespace JuegoPeliculas
         private void ExaminarButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PNG file (*.png)|*.PNG"; //ya funciona
+            openFileDialog.Filter = "PNG file (*.png)|*.PNG";
             if (openFileDialog.ShowDialog() == true)
             {
                 using (StreamReader imagenStream = File.OpenText(openFileDialog.FileName))
                 {
-                     ImagenPeliTexBox.Text=openFileDialog.FileName ;
+                     anyadirImagenPeliTexBox.Text=openFileDialog.FileName ;
                 }
             }
         }

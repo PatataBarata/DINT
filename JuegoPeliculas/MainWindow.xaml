@@ -8,9 +8,9 @@
         Title="Juego De Peliculas" Height="496.859" Width="704.159" MinWidth="500" MinHeight="570"
         Icon="Pelis.ico">
     <Window.Resources>
-        <local:Peliculas x:Key="nuevaPeli">
+       <!--<local:Peliculas x:Key="nuevaPeli">
 
-        </local:Peliculas>
+        </local:Peliculas>-->
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="125"></Setter>
             <Setter Property="Margin" Value="10,5"></Setter>
@@ -30,7 +30,8 @@
                     Background="AliceBlue"                 
                     Margin="10"
                     Padding="10,0,10,5"
-                    DataContext="{StaticResource nuevaPeli}">
+                    >
+                <!--DataContext="{StaticResource nuevaPeli}"-->
                 <Border.Effect>
                     <DropShadowEffect></DropShadowEffect>
                 </Border.Effect>
@@ -137,19 +138,20 @@
                             <TextBlock>Nivel de dificultad</TextBlock>
                         </StackPanel>
                     <StackPanel x:Name="JuegoStackPanel"
-                                  DataContext="{StaticResource nuevaPeli}">
-                            <TextBox Text="{Binding Path=titulo}"></TextBox>
-                        <TextBox Text="{Binding Path=pista}" ></TextBox>
-                        <TextBox x:Name="ImagenPeliTexBox" Text="{Binding Path=imagen}"></TextBox>
+                                >
+                                  <!--DataContext="{StaticResource nuevaPeli}"-->
+                            <TextBox x:Name="anyadirPeliTituloTextBox" Text="{Binding Path=titulo}"></TextBox>
+                        <TextBox Text="{Binding Path=pista}" x:Name="anyadirPeliPistaTextbos"></TextBox>
+                        <TextBox x:Name="anyadirImagenPeliTexBox" Text="{Binding Path=imagen}"></TextBox>
                             <DockPanel>
                                 <StackPanel>
-                                <RadioButton IsChecked="{Binding Path=facil}">Fácil</RadioButton>
-                                <RadioButton IsChecked="{Binding Path=normal}">Normal</RadioButton>
-                                <RadioButton IsChecked="{Binding Path=dificil}">Difícil</RadioButton>
+                                <RadioButton x:Name="facilRadioButton" IsChecked="{Binding Path=facil}">Fácil</RadioButton>
+                                <RadioButton x:Name="normalRadioButton" IsChecked="{Binding Path=normal}">Normal</RadioButton>
+                                <RadioButton x:Name="dificilRadioButton" IsChecked="{Binding Path=dificil}">Difícil</RadioButton>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock>Género</TextBlock>
-                                <ComboBox MinWidth="80" SelectedValue="{Binding Path=genero}">
+                                <ComboBox x:Name="generoComboBox" MinWidth="80" SelectedValue="{Binding Path=genero}">
                                     <ComboBoxItem>comedia</ComboBoxItem>
                                     <ComboBoxItem>drama</ComboBoxItem>
                                     <ComboBoxItem>accion</ComboBoxItem>
