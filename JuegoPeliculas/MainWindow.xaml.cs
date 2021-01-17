@@ -15,9 +15,6 @@ namespace JuegoPeliculas
     /// </summary>
     public partial class MainWindow : Window
     {
-
-       // Peliculas pelicula = new Peliculas("metropolis", "Mujer bionica blanco y negro", "https://www.experimenta.es/wp-content/uploads/2018/03/metropolis-la-boca-experimenta-02-800x1200.jpg" ,2, "ciencia-ficcion");
-      
         ObservableCollection<Peliculas> cincoPeliculas=new ObservableCollection<Peliculas>();
         ObservableCollection<Peliculas> listaPeliculas=new ObservableCollection<Peliculas>();
         Juego juego=new Juego();
@@ -29,15 +26,14 @@ namespace JuegoPeliculas
             nuevaPeli = new Peliculas();
             nuevaPeli = (Peliculas)JuegoStackPanel.DataContext;
 
-            // peliculas = Peliculas.GuardarPeliculas(); //usar cuando este arreglado.
 
-            juegoPeliculasGrid.DataContext = cincoPeliculas;
+            cincoPeliculas=(ObservableCollection<Peliculas>)juegoPeliculasGrid.DataContext ;
 
 
            //  JuegoDockPanel.DataContext = listaPeliculas;
             JuegoStackPanel.DataContext = listaPeliculas;
 
-            puntosTotalesTextBox.DataContext = juego;// para los puntos del juego que no va
+          //  puntosTotalesTextBox.DataContext = juego;// para los puntos del juego que no va
 
             dentro.DataContext = listaPeliculas;
 
@@ -49,12 +45,14 @@ namespace JuegoPeliculas
 
             if (listaPeliculas.Count() >= 5)
             {
-             textNumeroPaginauno.Text = "1";
-            cincoPeliculas = juego.InicarJuego(listaPeliculas);
-            //selecionar 5 peliculas aleatorias.(esto ya esta hecho en un principio)
-            textNumeroPagina.Text = cincoPeliculas.Count.ToString();
-
-     
+                darPistaCheckBox.IsChecked = false;
+                darPixtaTextBlok.Visibility = Visibility.Hidden;
+                textNumeroPaginauno.Text = "1";
+                 cincoPeliculas = juego.InicarJuego(listaPeliculas);
+                textNumeroPagina.Text = cincoPeliculas.Count.ToString();
+                int actual = Int32.Parse(textNumeroPaginauno.Text);              
+                
+                    juegoPeliculasGrid.DataContext = cincoPeliculas[actual];
             }
             else
                 MessageBox.Show("No tenemos peliculas para jugar", "Juego peliculas", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -102,23 +100,37 @@ namespace JuegoPeliculas
         private void validadPeliculaButton_Click(object sender, RoutedEventArgs e)
         {
             int numero = Int32.Parse(textNumeroPaginauno.Text); 
+            
 
-            //pasar a minusculas el texto que entra y el titulo o buscar solucion
-           if (validarTituloTextBox.Text == cincoPeliculas[numero].titulo)
+           if (validarTituloTextBox.Text.ToLower() == cincoPeliculas[numero].titulo.ToLower())
             {
+                int puntos=0;
+                if (cincoPeliculas[numero].facil)
+                {
+                    puntos = 2;
+                }
+
+                else if (cincoPeliculas[numero].normal)
+                {
+                    puntos = 4;
+                }
+                else if (cincoPeliculas[numero].dificil)
+                {
+                    puntos = 6;
+                }
+
                 MessageBox.Show("Pelicula Correcta", "Juego peliculas", MessageBoxButton.OK, MessageBoxImage.Information);
-              //  juego.CalcularPuntos(pelicula.nivelDificultad);
-                // pasar a siguiente pelicula, TODO
+                juego.CalcularPuntos(puntos);
+             puntosTotalesTextBox.Text = juego.CalcularPuntos(puntos).ToString();
+
             }
-        //    else*/
+           else
                 MessageBox.Show("Pelicula erronea" , "Juego peliculas", MessageBoxButton.OK, MessageBoxImage.Information);
-        } //falta algo
+        } 
 
         private void AnyadirButton_Click(object sender, RoutedEventArgs e)
         {
             nuevaPeli = new Peliculas();
-            //Peliculas peliculaAnyadir = new Peliculas(anyadirPeliTituloTextBox.Text, anyadirPeliPistaTextbos.Text, anyadirImagenPeliTexBox.Text, (bool)facilRadioButton.IsChecked, (bool)normalRadioButton.IsChecked, (bool)dificilRadioButton.IsChecked, generoComboBox.Text);
-
             nuevaPeli.titulo = anyadirPeliTituloTextBox.Text;
             nuevaPeli.pista = anyadirPeliPistaTextbos.Text;
             nuevaPeli.imagen  = anyadirImagenPeliTexBox.Text;

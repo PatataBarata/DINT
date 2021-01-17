@@ -74,13 +74,17 @@
 
                     <DockPanel  Margin="20" Grid.RowSpan="2">
                         <TextBlock DockPanel.Dock="Top">Cartel de la película</TextBlock>
-                        <Image Margin="3" x:Name="posterImage"  Source="{Binding Path=Imagen}"></Image>
+                        <Image Margin="3" x:Name="posterImage"  Source="{Binding Path=imagen}">
+                            <Image.Effect>
+                                <BlurEffect Radius="30"></BlurEffect>
+                            </Image.Effect>
+                        </Image>
                     </DockPanel>
                     <DockPanel x:Name="JuegoDockPanel" Grid.Column="2" Margin="20" Grid.RowSpan="2" LastChildFill="False">
                         <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
                             <DockPanel LastChildFill="False" Margin="0,10">
                                 <TextBlock DockPanel.Dock="Top" >Puntuación total</TextBlock>
-                                <TextBox IsReadOnly="True" x:Name="puntosTotalesTextBox" Text="{Binding Path=Puntos}" HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
+                                <TextBox IsReadOnly="True" x:Name="puntosTotalesTextBox" HorizontalAlignment="Center" Height="100" Width="150" ></TextBox>
                                 <Button DockPanel.Dock="Top" Width="95" Click="NuevaPartidaButton_Click" Content="Nueva partida" />
                             </DockPanel>
                         </DockPanel>
@@ -90,13 +94,13 @@
                             <TextBox x:Name="validarTituloTextBox" Margin="10,5"></TextBox>
                         </DockPanel>
                         <DockPanel Margin="20" DockPanel.Dock="Bottom" >
-                            <Image x:Name="generoImagen" DockPanel.Dock="Top" HorizontalAlignment="Center" Source="{Binding Path=Genero}" Height="64"/>
+                            <Image x:Name="generoImagen" DockPanel.Dock="Top" HorizontalAlignment="Center" Source="{Binding Path=genero}" Height="64"/>
                             <TextBlock HorizontalAlignment="Center"  DockPanel.Dock="Bottom" Margin="12">Género</TextBlock>
                             
                         </DockPanel>
                         <StackPanel DockPanel.Dock="Bottom" Margin="0,10">
                             <CheckBox Margin="10" x:Name="darPistaCheckBox" Checked="darPistaCheckBox_Checked" >Ver pista</CheckBox>
-                            <TextBlock x:Name="darPixtaTextBlok" Text="{Binding Path=Pista}" HorizontalAlignment="Center" Visibility="Hidden"></TextBlock>
+                            <TextBlock x:Name="darPixtaTextBlok" Text="{Binding Path=pista}" HorizontalAlignment="Center" Visibility="Hidden"></TextBlock>
                         </StackPanel>
                     </DockPanel>
                 </Grid>

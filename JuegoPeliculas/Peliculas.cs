@@ -97,6 +97,7 @@ namespace JuegoPeliculas
 
                 if (this.NivelDificultad != value)
                 {
+          
                     this.NivelDificultad = value;
                     this.NotifyPropertyChanged("NivelDificultad");
                 }
@@ -111,7 +112,7 @@ namespace JuegoPeliculas
 
                 if (this.Genero != value)
                 {
-                    this.Genero = value;
+                    this.Genero = value + ".png";
                     this.NotifyPropertyChanged("Genero");
                 }
 
@@ -131,17 +132,6 @@ namespace JuegoPeliculas
             Normal = normal;
             Dificil = dificil;
             Genero = genero;
-        }
-
-        //arreglar el nombre para poner uno mas correcto
-        public static List<Peliculas> GuardarPeliculas() {
-
-            List<Peliculas> todasLasPeliculas = new List<Peliculas>();
-           
-            // coger las peliculas con JSON...
-            //todasLasPeliculas.Add(TODO);
-
-            return todasLasPeliculas;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -9,7 +9,7 @@ namespace JuegoPeliculas
 {
     class Juego : INotifyPropertyChanged //falta hacer el propertychange de lo que se necesite (si se necesita)
     {
-       const int PUNTOSBASE = 0;
+       const int PUNTOSBASE = 1;
        private int Puntos;
        private int Dificultad;//darle el valor segun los boolean de facil, normal, dificil
        private  bool PistaVista;
@@ -28,7 +28,7 @@ namespace JuegoPeliculas
             }
         }
 
-        public Juego(int puntos, int dificultad, bool pistaVista)
+        public Juego( int dificultad)
         {
             
             Puntos = 0;
@@ -39,14 +39,19 @@ namespace JuegoPeliculas
 
         public Juego()
         {
+            
         }
-        public void CalcularPuntos(int puntosDePelicula) {
+        public  int CalcularPuntos(int nivelDificultad) {
 
             if (PistaVista) {
                 
-                Puntos=  (PUNTOSBASE / 2)* puntosDePelicula;
+                Puntos += nivelDificultad / 2;
             }
-                Puntos =  PUNTOSBASE * puntosDePelicula;    
+            else
+                Puntos += nivelDificultad;
+
+
+            return Puntos;
         }
         public ObservableCollection<Peliculas> InicarJuego(ObservableCollection<Peliculas> peliculas)
         {
